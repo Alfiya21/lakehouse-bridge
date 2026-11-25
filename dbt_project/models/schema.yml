@@ -1,0 +1,20 @@
+version: 2
+models:
+  - name: stg_orders
+    columns:
+      - {name: order_id, tests: [not_null, unique]}
+      - name: customer_id
+        tests:
+          - relationships: {to: ref('dim_customer_value'), field: customer_id}
+      - name: amount
+        tests:
+          - positive_value
+  - name: dim_customer_value
+    columns:
+      - {name: customer_id, tests: [not_null, unique]}
+      - name: region
+        tests:
+          - accepted_values: {values: [APAC, EMEA, AMER]}
+  - name: mart_regional_kpis
+    columns:
+      - {name: region, tests: [not_null, unique]}

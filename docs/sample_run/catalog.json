@@ -1,0 +1,489 @@
+{
+  "tables": {
+    "gold_customer_ltv": {
+      "rows": 2000,
+      "columns": [
+        {
+          "name": "customer_id",
+          "type": "BIGINT",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "region",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "segment",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "order_count",
+          "type": "BIGINT",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "total_revenue",
+          "type": "DOUBLE",
+          "classification": null,
+          "glossary_term": "Customer Lifetime Value"
+        },
+        {
+          "name": "first_order_date",
+          "type": "DATE",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "last_order_date",
+          "type": "DATE",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "revenue_rank_in_region",
+          "type": "INTEGER",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "ltv_quartile",
+          "type": "INTEGER",
+          "classification": null,
+          "glossary_term": "Customer Lifetime Value"
+        }
+      ],
+      "upstream": [
+        "silver_orders",
+        "silver_customers"
+      ],
+      "pii_columns": []
+    },
+    "gold_daily_revenue": {
+      "rows": 1620,
+      "columns": [
+        {
+          "name": "order_date",
+          "type": "DATE",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "region",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "orders",
+          "type": "BIGINT",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "revenue",
+          "type": "DOUBLE",
+          "classification": null,
+          "glossary_term": "Revenue"
+        },
+        {
+          "name": "avg_order_value",
+          "type": "DOUBLE",
+          "classification": null,
+          "glossary_term": "Average Order Value"
+        }
+      ],
+      "upstream": [
+        "silver_orders"
+      ],
+      "pii_columns": []
+    },
+    "gold_payments_hourly": {
+      "rows": 8496,
+      "columns": [
+        {
+          "name": "hour_ts",
+          "type": "TIMESTAMP",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "method",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "events",
+          "type": "BIGINT",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "successes",
+          "type": "BIGINT",
+          "classification": null,
+          "glossary_term": "Payment Success Rate"
+        },
+        {
+          "name": "success_amount",
+          "type": "DOUBLE",
+          "classification": null,
+          "glossary_term": null
+        }
+      ],
+      "upstream": [
+        "silver_payments"
+      ],
+      "pii_columns": []
+    },
+    "quarantine_orders": {
+      "rows": 398,
+      "columns": [
+        {
+          "name": "customer_id",
+          "type": "BIGINT",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "order_id",
+          "type": "BIGINT",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "order_ts",
+          "type": "TIMESTAMP",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "amount",
+          "type": "DOUBLE",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "currency",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "region",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "reason",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": "Quarantine"
+        }
+      ],
+      "upstream": [
+        "bronze/orders"
+      ],
+      "pii_columns": []
+    },
+    "silver_customers": {
+      "rows": 2000,
+      "columns": [
+        {
+          "name": "customer_id",
+          "type": "BIGINT",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "full_name",
+          "type": "VARCHAR",
+          "classification": {
+            "pii": "PERSON_NAME",
+            "sensitivity": "HIGH",
+            "evidence": "column name"
+          },
+          "glossary_term": "PII"
+        },
+        {
+          "name": "email",
+          "type": "VARCHAR",
+          "classification": {
+            "pii": "EMAIL",
+            "sensitivity": "HIGH",
+            "evidence": "column name"
+          },
+          "glossary_term": "PII"
+        },
+        {
+          "name": "phone",
+          "type": "VARCHAR",
+          "classification": {
+            "pii": "PHONE",
+            "sensitivity": "HIGH",
+            "evidence": "column name"
+          },
+          "glossary_term": "PII"
+        },
+        {
+          "name": "region",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "segment",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "signup_date",
+          "type": "DATE",
+          "classification": null,
+          "glossary_term": null
+        }
+      ],
+      "upstream": [
+        "bronze/customers"
+      ],
+      "pii_columns": [
+        "full_name",
+        "email",
+        "phone"
+      ]
+    },
+    "silver_orders": {
+      "rows": 19602,
+      "columns": [
+        {
+          "name": "customer_id",
+          "type": "BIGINT",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "order_id",
+          "type": "BIGINT",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "order_ts",
+          "type": "TIMESTAMP",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "amount",
+          "type": "DOUBLE",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "currency",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "region",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "order_date",
+          "type": "DATE",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "order_month",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        }
+      ],
+      "upstream": [
+        "bronze/orders",
+        "silver_customers"
+      ],
+      "pii_columns": []
+    },
+    "silver_payments": {
+      "rows": 10000,
+      "columns": [
+        {
+          "name": "event_id",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "order_id",
+          "type": "BIGINT",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "event_ts",
+          "type": "TIMESTAMP",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "method",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "amount",
+          "type": "DOUBLE",
+          "classification": null,
+          "glossary_term": null
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR",
+          "classification": null,
+          "glossary_term": null
+        }
+      ],
+      "upstream": [
+        "landing/stream/*.json"
+      ],
+      "pii_columns": []
+    }
+  },
+  "lineage": [
+    [
+      "landing/batch/customers.csv",
+      "bronze/customers"
+    ],
+    [
+      "landing/batch/orders.csv",
+      "bronze/orders"
+    ],
+    [
+      "landing/stream/*.json",
+      "silver_payments"
+    ],
+    [
+      "bronze/customers",
+      "silver_customers"
+    ],
+    [
+      "bronze/orders",
+      "silver_orders"
+    ],
+    [
+      "bronze/orders",
+      "quarantine_orders"
+    ],
+    [
+      "silver_customers",
+      "silver_orders"
+    ],
+    [
+      "silver_orders",
+      "gold_daily_revenue"
+    ],
+    [
+      "silver_orders",
+      "gold_customer_ltv"
+    ],
+    [
+      "silver_customers",
+      "gold_customer_ltv"
+    ],
+    [
+      "silver_payments",
+      "gold_payments_hourly"
+    ]
+  ],
+  "column_lineage": {
+    "gold_daily_revenue.revenue": [
+      "silver_orders.amount",
+      "silver_orders.status",
+      "silver_orders.order_date"
+    ],
+    "gold_customer_ltv.total_revenue": [
+      "silver_orders.amount",
+      "silver_orders.customer_id",
+      "silver_customers.customer_id"
+    ],
+    "gold_payments_hourly.success_amount": [
+      "silver_payments.amount",
+      "silver_payments.status"
+    ]
+  },
+  "glossary": [
+    {
+      "term": "Revenue",
+      "definition": "Sum of order amount in INR for orders whose status is not CANCELLED.",
+      "columns": [
+        "gold_daily_revenue.revenue",
+        "gold_customer_ltv.total_revenue"
+      ]
+    },
+    {
+      "term": "Average Order Value",
+      "definition": "Revenue divided by number of non-cancelled orders for the same grain.",
+      "columns": [
+        "gold_daily_revenue.avg_order_value"
+      ]
+    },
+    {
+      "term": "Customer Lifetime Value",
+      "definition": "Total non-cancelled revenue of a customer since signup; LTV quartile 1 is the top 25% of customers.",
+      "columns": [
+        "gold_customer_ltv.total_revenue",
+        "gold_customer_ltv.ltv_quartile"
+      ]
+    },
+    {
+      "term": "Quarantine",
+      "definition": "Orders rejected by silver validation (non-positive amount or unknown customer) with a machine-readable reason. They are excluded from all metrics.",
+      "columns": [
+        "quarantine_orders.reason"
+      ]
+    },
+    {
+      "term": "Payment Success Rate",
+      "definition": "successes divided by events in gold_payments_hourly for the same hour and method.",
+      "columns": [
+        "gold_payments_hourly.successes"
+      ]
+    },
+    {
+      "term": "PII",
+      "definition": "Personally identifiable information: full_name, email and phone. Masked for every role except admin.",
+      "columns": [
+        "silver_customers.full_name",
+        "silver_customers.email",
+        "silver_customers.phone"
+      ]
+    }
+  ]
+}

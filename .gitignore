@@ -1,0 +1,27 @@
+data/
+__pycache__/
+*.pyc
+.pytest_cache/
+dbt_project/target/
+dbt_project/logs/
+logs/
+# Environment and secrets
+.env
+.env.*
+!.env.example
+secrets/
+*.pem
+*.key
+
+# Python environments
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

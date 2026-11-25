@@ -1,0 +1,9 @@
+name: lakehouse_bridge
+version: "0.1.0"
+config-version: 2
+profile: lakehouse_bridge
+model-paths: ["models"]
+models:
+  lakehouse_bridge:
+    +materialized: table
+    +schema: marts

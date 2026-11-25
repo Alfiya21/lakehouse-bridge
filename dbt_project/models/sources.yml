@@ -1,0 +1,9 @@
+version: 2
+sources:
+  - name: lake
+    schema: analytics            # BigQuery: dataset
+    tables:
+      - name: silver_customers
+      - name: silver_orders
+      - name: gold_customer_ltv
+      - name: gold_daily_revenue

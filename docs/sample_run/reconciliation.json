@@ -1,0 +1,51 @@
+{
+  "silver_customers": {
+    "rows_source": 2000,
+    "rows_target": 2000,
+    "checks": 12,
+    "mismatches": [],
+    "ok": true
+  },
+  "silver_orders": {
+    "rows_source": 19602,
+    "rows_target": 19602,
+    "checks": 19,
+    "mismatches": [],
+    "ok": true
+  },
+  "silver_payments": {
+    "rows_source": 10000,
+    "rows_target": 10000,
+    "checks": 13,
+    "mismatches": [],
+    "ok": true
+  },
+  "quarantine_orders": {
+    "rows_source": 398,
+    "rows_target": 398,
+    "checks": 16,
+    "mismatches": [],
+    "ok": true
+  },
+  "gold_daily_revenue": {
+    "rows_source": 1620,
+    "rows_target": 1620,
+    "checks": 11,
+    "mismatches": [],
+    "ok": true
+  },
+  "gold_customer_ltv": {
+    "rows_source": 2000,
+    "rows_target": 2000,
+    "checks": 20,
+    "mismatches": [],
+    "ok": true
+  },
+  "gold_payments_hourly": {
+    "rows_source": 8496,
+    "rows_target": 8496,
+    "checks": 11,
+    "mismatches": [],
+    "ok": true
+  }
+}

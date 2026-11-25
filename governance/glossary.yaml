@@ -1,0 +1,7 @@
+terms:
+  - {term: Revenue, definition: "Sum of order amount in INR for orders whose status is not CANCELLED.", columns: [gold_daily_revenue.revenue, gold_customer_ltv.total_revenue]}
+  - {term: Average Order Value, definition: "Revenue divided by number of non-cancelled orders for the same grain.", columns: [gold_daily_revenue.avg_order_value]}
+  - {term: Customer Lifetime Value, definition: "Total non-cancelled revenue of a customer since signup; LTV quartile 1 is the top 25% of customers.", columns: [gold_customer_ltv.total_revenue, gold_customer_ltv.ltv_quartile]}
+  - {term: Quarantine, definition: "Orders rejected by silver validation (non-positive amount or unknown customer) with a machine-readable reason. They are excluded from all metrics.", columns: [quarantine_orders.reason]}
+  - {term: Payment Success Rate, definition: "successes divided by events in gold_payments_hourly for the same hour and method.", columns: [gold_payments_hourly.successes]}
+  - {term: PII, definition: "Personally identifiable information: full_name, email and phone. Masked for every role except admin.", columns: [silver_customers.full_name, silver_customers.email, silver_customers.phone]}

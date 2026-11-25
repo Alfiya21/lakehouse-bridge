@@ -1,0 +1,10 @@
+{
+  "bronze_customers": 2000,
+  "bronze_orders": 20100,
+  "silver_customers": 2000,
+  "silver_orders": 19602,
+  "quarantine_orders": 398,
+  "duplicates_removed": 100,
+  "gold_daily_revenue": 1620,
+  "gold_customer_ltv": 2000
+}

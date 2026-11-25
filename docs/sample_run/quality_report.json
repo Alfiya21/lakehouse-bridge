@@ -1,0 +1,135 @@
+{
+  "total_rules": 14,
+  "passed": 14,
+  "error_failures": 0,
+  "warnings": 0,
+  "gate_passed": true,
+  "results": [
+    {
+      "table": "silver_customers",
+      "rule": "not_null",
+      "column": "customer_id",
+      "description": "customer_id must not be null",
+      "severity": "error",
+      "failing_rows": 0,
+      "passed": true
+    },
+    {
+      "table": "silver_customers",
+      "rule": "unique",
+      "column": "customer_id",
+      "description": "customer_id must be unique",
+      "severity": "error",
+      "failing_rows": 0,
+      "passed": true
+    },
+    {
+      "table": "silver_customers",
+      "rule": "accepted_values",
+      "column": "region",
+      "description": "region in ['APAC', 'EMEA', 'AMER']",
+      "severity": "error",
+      "failing_rows": 0,
+      "passed": true
+    },
+    {
+      "table": "silver_customers",
+      "rule": "completeness",
+      "column": "email",
+      "description": "email completeness >= 0.98",
+      "severity": "warn",
+      "failing_rows": 0,
+      "passed": true
+    },
+    {
+      "table": "silver_customers",
+      "rule": "regex",
+      "column": "email",
+      "description": "email matches pattern",
+      "severity": "warn",
+      "failing_rows": 0,
+      "passed": true
+    },
+    {
+      "table": "silver_orders",
+      "rule": "unique",
+      "column": "order_id",
+      "description": "order_id must be unique",
+      "severity": "error",
+      "failing_rows": 0,
+      "passed": true
+    },
+    {
+      "table": "silver_orders",
+      "rule": "min",
+      "column": "amount",
+      "description": "amount >= 0.01",
+      "severity": "error",
+      "failing_rows": 0,
+      "passed": true
+    },
+    {
+      "table": "silver_orders",
+      "rule": "accepted_values",
+      "column": "status",
+      "description": "status in ['PLACED', 'SHIPPED', 'DELIVERED', 'CANCELLED', 'RETURNED']",
+      "severity": "error",
+      "failing_rows": 0,
+      "passed": true
+    },
+    {
+      "table": "silver_orders",
+      "rule": "relationship",
+      "column": "customer_id",
+      "description": "customer_id references silver_customers.customer_id",
+      "severity": "error",
+      "failing_rows": 0,
+      "passed": true
+    },
+    {
+      "table": "silver_payments",
+      "rule": "unique",
+      "column": "event_id",
+      "description": "event_id must be unique",
+      "severity": "error",
+      "failing_rows": 0,
+      "passed": true
+    },
+    {
+      "table": "silver_payments",
+      "rule": "accepted_values",
+      "column": "status",
+      "description": "status in ['SUCCESS', 'FAILED']",
+      "severity": "error",
+      "failing_rows": 0,
+      "passed": true
+    },
+    {
+      "table": "gold_daily_revenue",
+      "rule": "min",
+      "column": "revenue",
+      "description": "revenue >= 0",
+      "severity": "error",
+      "failing_rows": 0,
+      "passed": true
+    },
+    {
+      "table": "gold_customer_ltv",
+      "rule": "unique",
+      "column": "customer_id",
+      "description": "customer_id must be unique",
+      "severity": "error",
+      "failing_rows": 0,
+      "passed": true
+    },
+    {
+      "table": "quarantine_orders",
+      "rule": "max_ratio_of",
+      "column": null,
+      "description": "row count <= 5% of silver_orders",
+      "severity": "warn",
+      "failing_rows": 0,
+      "passed": true
+    }
+  ]
+}

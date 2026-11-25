@@ -1,0 +1,14 @@
+pyspark==3.5.1
+duckdb>=1.0
+pandas>=2.0
+pyarrow>=14
+numpy>=1.26
+pyyaml>=6
+scikit-learn>=1.4
+faiss-cpu>=1.8
+langgraph>=0.2
+mcp>=1.2,<2
+dbt-duckdb>=1.8
+pytest>=8
+# Cloud mode (optional, not exercised in CI):
+# google-cloud-bigquery[pandas]  google-cloud-storage  google-cloud-aiplatform  apache-airflow

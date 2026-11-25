@@ -1,0 +1,6 @@
+# Access policy. Roles map to row filters and PII masking. admin sees raw data.
+roles:
+  admin:         {row_filter: null,             mask_pii: false}
+  analyst_global: {row_filter: null,            mask_pii: true}
+  analyst_apac:  {row_filter: "region = 'APAC'", mask_pii: true}
+restricted_tables: [quarantine_orders]   # admin only

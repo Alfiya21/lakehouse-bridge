@@ -1,0 +1,16 @@
+# Declarative data-quality rules. severity=error blocks the migration gate; warn is reported only.
+rules:
+  - {table: silver_customers, rule: not_null, column: customer_id, severity: error}
+  - {table: silver_customers, rule: unique, column: customer_id, severity: error}
+  - {table: silver_customers, rule: accepted_values, column: region, values: [APAC, EMEA, AMER], severity: error}
+  - {table: silver_customers, rule: completeness, column: email, min_ratio: 0.98, severity: warn}
+  - {table: silver_customers, rule: regex, column: email, pattern: '^[^@]+@[^@]+\.[^@]+$', severity: warn}
+  - {table: silver_orders, rule: unique, column: order_id, severity: error}
+  - {table: silver_orders, rule: min, column: amount, min: 0.01, severity: error}
+  - {table: silver_orders, rule: accepted_values, column: status, values: [PLACED, SHIPPED, DELIVERED, CANCELLED, RETURNED], severity: error}
+  - {table: silver_orders, rule: relationship, column: customer_id, ref_table: silver_customers, ref_column: customer_id, severity: error}
+  - {table: silver_payments, rule: unique, column: event_id, severity: error}
+  - {table: silver_payments, rule: accepted_values, column: status, values: [SUCCESS, FAILED], severity: error}
+  - {table: gold_daily_revenue, rule: min, column: revenue, min: 0, severity: error}
+  - {table: gold_customer_ltv, rule: unique, column: customer_id, severity: error}
+  - {table: quarantine_orders, rule: max_ratio_of, ref_table: silver_orders, max_ratio: 0.05, severity: warn}

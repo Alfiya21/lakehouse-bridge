@@ -1,0 +1,14 @@
+lakehouse_bridge:
+  target: duckdb
+  outputs:
+    duckdb:                       # local stand-in for the warehouse
+      type: duckdb
+      path: "{{ env_var('LB_DATA', '../data') }}/warehouse.duckdb"
+      schema: analytics
+    bigquery:                     # cloud target (not exercised in CI)
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('LB_BQ_PROJECT', 'PROJECT') }}"
+      dataset: "{{ env_var('LB_BQ_DATASET', 'lakehouse_bridge') }}"
+      location: US
+      threads: 4
